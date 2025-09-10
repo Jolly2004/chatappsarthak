@@ -66,28 +66,30 @@ export default function SignUpPage() {
         )}
 
         {/* Username Input */}
-        <div className="flex items-center border border-gray-300 rounded-lg mb-4 px-3">
-          <FaUserAlt className="text-gray-500 mr-2" />
-          <input
-            type="text"
-            placeholder="Enter your username"
-            className="w-full p-3 outline-none"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
+       {/* Username Input */}
+<div className="flex items-center border border-gray-300 rounded-lg mb-4 px-3 bg-white">
+  <FaUserAlt className="text-gray-500 mr-2" />
+  <input
+    type="text"
+    placeholder="Enter your username"
+    className="w-full p-3 outline-none text-gray-800 placeholder-gray-500 bg-white"
+    value={username}
+    onChange={(e) => setUsername(e.target.value)}
+  />
+</div>
 
-        {/* Password Input */}
-        <div className="flex items-center border border-gray-300 rounded-lg mb-6 px-3">
-          <FaLock className="text-gray-500 mr-2" />
-          <input
-            type="password"
-            placeholder="Enter password"
-            className="w-full p-3 outline-none"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+{/* Password Input */}
+<div className="flex items-center border border-gray-300 rounded-lg mb-6 px-3 bg-white">
+  <FaLock className="text-gray-500 mr-2" />
+  <input
+    type="password"
+    placeholder="Enter password"
+    className="w-full p-3 outline-none text-gray-800 placeholder-gray-500 bg-white"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+  />
+</div>
+
 
         {/* Buttons */}
         <div className="flex justify-between items-center">

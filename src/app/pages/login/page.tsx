@@ -41,23 +41,24 @@ export default function LoginPage() {
           <h2 className="text-2xl font-bold text-gray-800">ChatApp Login</h2>
         </div>
 
-        {/* Username */}
-        <input
-          type="text"
-          placeholder="Enter username"
-          className="border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 outline-none p-2 rounded-md mb-3 w-full"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
+       {/* Username */}
+<input
+  type="text"
+  placeholder="Enter username"
+  className="border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 outline-none p-2 rounded-md mb-3 w-full text-gray-800 placeholder-gray-500"
+  value={username}
+  onChange={(e) => setUsername(e.target.value)}
+/>
 
-        {/* Password */}
-        <input
-          type="password"
-          placeholder="Enter password"
-          className="border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 outline-none p-2 rounded-md mb-3 w-full"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+{/* Password */}
+<input
+  type="password"
+  placeholder="Enter password"
+  className="border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 outline-none p-2 rounded-md mb-3 w-full text-gray-800 placeholder-gray-500"
+  value={password}
+  onChange={(e) => setPassword(e.target.value)}
+/>
+
 
         {/* Error */}
         {error && (
