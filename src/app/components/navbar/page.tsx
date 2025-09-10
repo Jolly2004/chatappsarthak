@@ -43,9 +43,7 @@ export default function ChatHeader() {
 
       {/* Action Buttons */}
       <div className="flex items-center gap-3 relative">
-        <button className="hover:bg-green-700 p-2 rounded-full transition">🔍</button>
-        <button className="hover:bg-green-700 p-2 rounded-full transition">📞</button>
-        <button className="hover:bg-green-700 p-2 rounded-full transition">🎥</button>
+       
 
         {/* Menu Button */}
         <button

@@ -1,13 +1,36 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation"; // ✅ Next.js router
 import UserList from "../../components/userlist/page";
 import ChatBox from "@/app/components/chatbox/page";
 import ChatHeader from "@/app/components/navbar/page";
 
 export default function ChatPage() {
   const [selectedUser, setSelectedUser] = useState<string | null>(null);
-  const [sidebarOpen, setSidebarOpen] = useState(false); // for mobile toggle
+  const [sidebarOpen, setSidebarOpen] = useState(false); 
+  const [loading, setLoading] = useState(true);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    // ✅ Check if user is logged in (example: using localStorage or cookie)
+    const token = localStorage.getItem("authToken"); 
+
+    if (!token) {
+      router.push("/pages/login"); // redirect to login page
+    } else {
+      setLoading(false); // allow page to render
+    }
+  }, [router]);
+
+  if (loading) {
+    return (
+      <div className="flex h-screen items-center justify-center text-lg text-gray-600">
+        Checking authentication...
+      </div>
+    );
+  }
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -21,12 +44,12 @@ export default function ChatPage() {
         <UserList
           onSelect={(user) => {
             setSelectedUser(user);
-            setSidebarOpen(false); // close sidebar on mobile after selecting
+            setSidebarOpen(false);
           }}
         />
       </div>
 
-      {/* Overlay when sidebar is open on mobile */}
+      {/* Overlay */}
       {sidebarOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-40 z-20 lg:hidden"
@@ -38,7 +61,6 @@ export default function ChatPage() {
       <div className="flex flex-col flex-1">
         {/* Header */}
         <div className="flex items-center justify-between border-b p-3 bg-white shadow-sm">
-          {/* Hamburger button for mobile */}
           <button
             className="lg:hidden p-2 rounded-md hover:bg-gray-200 transition"
             onClick={() => setSidebarOpen(true)}
@@ -59,20 +81,11 @@ export default function ChatPage() {
             </svg>
           </button>
 
-          {/* Chat header (user info / app title) */}
           <div className="flex-1 text-center">
             <ChatHeader />
           </div>
 
-          {/* Placeholder for right-side icons (like search, menu) */}
-          <div className="hidden lg:flex items-center gap-4">
-            <button className="p-2 hover:bg-gray-200 rounded-full transition">
-              🔍
-            </button>
-            <button className="p-2 hover:bg-gray-200 rounded-full transition">
-              ⋮
-            </button>
-          </div>
+          
         </div>
 
         {/* Chat Body */}

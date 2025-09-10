@@ -10,9 +10,21 @@ export default function SignUpPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // ✅ Password rules
+  const passwordCriteria =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
   const handleRegister = async () => {
     if (!username || !password) {
       setError("⚠️ Please fill all fields");
+      return;
+    }
+
+    // 🔒 Validate password before sending
+    if (!passwordCriteria.test(password)) {
+      setError(
+        "Password must be at least 8 characters, include uppercase, lowercase, number, and special character."
+      );
       return;
     }
 

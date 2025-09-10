@@ -10,25 +10,27 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const router = useRouter();
 
-  const handleLogin = async () => {
-    try {
-      const res = await fetch("/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
-      });
+ const handleLogin = async () => {
+  try {
+    const res = await fetch("/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
 
-      const data = await res.json();
+    const data = await res.json();
 
-      if (res.ok) {
-        router.push("/pages/chatpage"); // ✅ redirect to chat
-      } else {
-        setError(data.message || "Login failed");
-      }
-    } catch (err) {
-      setError("Server error, try again");
+    if (res.ok) {
+      localStorage.setItem("authToken", data.token || "dummy-token"); // 🔑 save token
+      router.push("/pages/chatpage"); // adjust path depending on your folder
+    } else {
+      setError(data.message || "Login failed");
     }
-  };
+  } catch (err) {
+    setError("Server error, try again");
+  }
+};
+
 
   return (
     <div className="flex items-center justify-center h-screen bg-gradient-to-br from-blue-100 to-blue-300">
